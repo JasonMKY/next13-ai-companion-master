@@ -29,11 +29,11 @@ export async function POST(req: Request) {
         categoryId,
         userId: user.id,
         userName: user.firstName,
-        src,
-        name,
         description,
         instructions,
+        name,
         seed,
+        src,
       }
     });
 

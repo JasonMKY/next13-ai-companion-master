@@ -12,8 +12,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Companion.AI',
-  description: 'Your customized companion.',
+  title: 'RoleplayPal - Fantasy AI Chatbot',
+  description: 'Roleplay with your favorite fantasy characters.',
 }
 
 export default function RootLayout({
