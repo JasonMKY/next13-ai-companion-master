@@ -43,7 +43,7 @@ export async function GET() {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "RoleplayPal Pro",
+              name: "RolePlayPal Pro",
               description: "Create Custom AI RoleplayPals"
             },
             unit_amount: 999,
@@ -55,7 +55,7 @@ export async function GET() {
         },
       ],
       metadata: {
-        userId
+        userId,
       },
     })
 
