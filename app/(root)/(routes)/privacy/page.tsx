@@ -9,6 +9,7 @@ const PrivacyPolicy = () => {
         Last updated: October 03, 2023
         This is where you can provide your privacy policy content. Make sure to include all the necessary information
         regarding data collection, usage, and protection.
+        787
       </p>
     </div>
   );
