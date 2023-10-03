@@ -20,29 +20,15 @@ export async function GET() {
       where: {
         userId
       }
-    });
+    })
 
     if (userSubscription && userSubscription.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: userSubscription.stripeCustomerId,
         return_url: settingsUrl,
-      });
+      })
 
-      return new NextResponse(JSON.stringify({ url: stripeSession.url }));
-    }
-
-    let customer_email = null;
-    if (user.emailAddresses && user.emailAddresses.length > 0) {
-      // Check if user.emailAddresses is defined and contains at least one email address
-      customer_email = user.emailAddresses[0].emailAddress || null;
-    } else {
-      console.error("User email address is not available.");
-      return new NextResponse("User email address is not available", { status: 400 });
-    }
-
-    if (customer_email === null) {
-      console.error("User email address is null.");
-      return new NextResponse("User email address is null", { status: 400 });
+      return new NextResponse(JSON.stringify({ url: stripeSession.url }))
     }
 
     const stripeSession = await stripe.checkout.sessions.create({
@@ -51,14 +37,14 @@ export async function GET() {
       payment_method_types: ["card"],
       mode: "subscription",
       billing_address_collection: "auto",
-      customer_email: customer_email,
+      customer_email: user.emailAddresses[0].emailAddress,
       line_items: [
         {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "RoleplayPal Pro",
-              description: "Create Custom AI RoleplayPals"
+              name: "Companion Pro",
+              description: "Create Custom AI Companions"
             },
             unit_amount: 999,
             recurring: {
@@ -69,13 +55,13 @@ export async function GET() {
         },
       ],
       metadata: {
-        userId
+        userId,
       },
-    });
+    })
 
-    return new NextResponse(JSON.stringify({ url: stripeSession.url }));
+    return new NextResponse(JSON.stringify({ url: stripeSession.url }))
   } catch (error) {
-    console.error("[STRIPE]", error);
+    console.log("[STRIPE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
-}
+};
