@@ -32,12 +32,17 @@ export async function GET() {
     }
 
     let customer_email = null;
-    if (user.emailAddresses && user.emailAddresses.length > 0 && user.emailAddresses[0].emailAddress) {
-      // Check if user.emailAddresses is defined and contains at least one email address, and emailAddress is defined
-      customer_email = user.emailAddresses[0].emailAddress;
+    if (user.emailAddresses && user.emailAddresses.length > 0) {
+      // Check if user.emailAddresses is defined and contains at least one email address
+      customer_email = user.emailAddresses[0].emailAddress || null;
     } else {
       console.error("User email address is not available.");
       return new NextResponse("User email address is not available", { status: 400 });
+    }
+
+    if (customer_email === null) {
+      console.error("User email address is null.");
+      return new NextResponse("User email address is null", { status: 400 });
     }
 
     const stripeSession = await stripe.checkout.sessions.create({
