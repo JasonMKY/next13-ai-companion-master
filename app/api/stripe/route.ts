@@ -32,9 +32,12 @@ export async function GET() {
     }
 
     let customer_email = null;
-    if (user.emailAddresses && user.emailAddresses.length > 0) {
-      // Check if user.emailAddresses is defined and contains at least one email address
+    if (user.emailAddresses && user.emailAddresses.length > 0 && user.emailAddresses[0].emailAddress) {
+      // Check if user.emailAddresses is defined and contains at least one email address, and emailAddress is defined
       customer_email = user.emailAddresses[0].emailAddress;
+    } else {
+      console.error("User email address is not available.");
+      return new NextResponse("User email address is not available", { status: 400 });
     }
 
     const stripeSession = await stripe.checkout.sessions.create({
@@ -43,7 +46,7 @@ export async function GET() {
       payment_method_types: ["card"],
       mode: "subscription",
       billing_address_collection: "auto",
-      customer_email: user.emailAddresses[0].emailAddress,
+      customer_email: customer_email,
       line_items: [
         {
           price_data: {
@@ -67,7 +70,7 @@ export async function GET() {
 
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (error) {
-    console.log("[STRIPE]", error);
+    console.error("[STRIPE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
 }
