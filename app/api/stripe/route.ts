@@ -20,15 +20,21 @@ export async function GET() {
       where: {
         userId
       }
-    })
+    });
 
     if (userSubscription && userSubscription.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
         customer: userSubscription.stripeCustomerId,
         return_url: settingsUrl,
-      })
+      });
 
-      return new NextResponse(JSON.stringify({ url: stripeSession.url }))
+      return new NextResponse(JSON.stringify({ url: stripeSession.url }));
+    }
+
+    let customer_email = null;
+    if (user.emailAddresses && user.emailAddresses.length > 0) {
+      // Check if user.emailAddresses is defined and contains at least one email address
+      customer_email = user.emailAddresses[0].emailAddress;
     }
 
     const stripeSession = await stripe.checkout.sessions.create({
@@ -43,7 +49,7 @@ export async function GET() {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "RolePlayPal Pro",
+              name: "RoleplayPal Pro",
               description: "Create Custom AI RoleplayPals"
             },
             unit_amount: 999,
@@ -55,13 +61,13 @@ export async function GET() {
         },
       ],
       metadata: {
-        userId,
+        userId
       },
-    })
+    });
 
-    return new NextResponse(JSON.stringify({ url: stripeSession.url }))
+    return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (error) {
     console.log("[STRIPE]", error);
     return new NextResponse("Internal Error", { status: 500 });
   }
-};
+}
