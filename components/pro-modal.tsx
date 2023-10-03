@@ -35,7 +35,7 @@ export const ProModal = () => {
       window.location.href = response.data.url;
     } catch (error) {
       toast({
-        description: "Something went wrong",
+        description: "Something went wrong. May need to add an EMAIL to your account.",
         variant: "destructive",
       });
     } finally {
