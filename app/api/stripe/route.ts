@@ -46,7 +46,7 @@ export async function GET() {
               name: "RoleplayPals Pro",
               description: "Create Custom AI Companions/Chatbots"
             },
-            unit_amount: 100,
+            unit_amount: 999,
             recurring: {
               interval: "month"
             }
