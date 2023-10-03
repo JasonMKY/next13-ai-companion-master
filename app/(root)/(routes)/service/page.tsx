@@ -1,6 +1,6 @@
 import React from 'react';
 
-class TermsOfService extends React.Component {
+class Service extends React.Component {
   render() {
     return (
       <div className="terms-of-service">
@@ -21,4 +21,4 @@ class TermsOfService extends React.Component {
   }
 }
 
-export default TermsOfService;
+export default Service;
