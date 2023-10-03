@@ -11,7 +11,7 @@ const SettingsPage = async () => {
         {isPro ? "You are currently on a Pro plan." : "You are currently on a free plan."}        
       </div>
       <div className="text-muted-foreground text-sm">
-        {"If you need support email: placeholder@google.com"}
+        {"If you need support email: jmck38845@gmail.com"}
       </div>
       <SubscriptionButton isPro={isPro} />
     </div>
