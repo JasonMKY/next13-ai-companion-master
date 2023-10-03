@@ -57,13 +57,13 @@ export const ProModal = () => {
           <DialogDescription className="text-center space-y-2">
             Create
             <span className="text-sky-500 mx-1 font-medium">Custom AI</span>
-            Companions!
+            Companions/Chatbots
           </DialogDescription>
         </DialogHeader>
         <Separator />
         <div className="flex justify-between">
           <p className="text-2xl font-medium">
-            $9<span className="text-sm font-normal">.99 / mo</span>
+            $1<span className="text-sm font-normal">.00 / mo</span>
           </p>
           <Button onClick={onSubscribe} disabled={loading} variant="premium">
             Subscribe

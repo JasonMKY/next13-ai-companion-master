@@ -43,8 +43,8 @@ export async function GET() {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "Companion Pro",
-              description: "Create Custom AI Companions"
+              name: "RoleplayPals Pro",
+              description: "Create Custom AI Companions/Chatbots"
             },
             unit_amount: 100,
             recurring: {
