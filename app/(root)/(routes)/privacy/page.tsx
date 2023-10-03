@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Privacy = () => {
+const Privacy = async () => {
   return (
     <div>
       <h1>Privacy Policy</h1>
