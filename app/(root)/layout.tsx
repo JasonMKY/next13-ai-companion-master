@@ -1,25 +1,26 @@
-import { Navbar } from "@/components/navbar";
-import { Sidebar } from "@/components/sidebar";
+import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
+import prismadb from "@/lib/prismadb";
 import { checkSubscription } from "@/lib/subscription";
+import { currentUser } from "@clerk/nextjs";
 
-const RootLayout = async ({
-  children
-}: {
-  children: React.ReactNode;
-}) => {
+async function RootLayout({ children }: { children: React.ReactNode }) {
+  const user = await currentUser();
   const isPro = await checkSubscription();
-
-  return ( 
-    <div className="h-full">
-      <Navbar isPro={isPro} />
-      <div className="hidden md:flex mt-16 h-full w-20 flex-col fixed inset-y-0">
-        <Sidebar isPro={isPro} />
+  const companion = await prismadb.companion.findFirst({
+    where: {
+      userId: user?.id,
+    },
+  });
+  return (
+    <div className="h-full max-w-screen-2xl mx-auto">
+      <Navbar isPro={isPro} companionId={companion?.id} userId={user?.id} />
+      <div className="hidden md:flex mt-16 w-20 flex-col fixed inset-y-0">
+        <Sidebar isPro={isPro} companionId={companion?.id} userId={user?.id} />
       </div>
-      <main className="md:pl-20 pt-16 h-full">
-        {children}
-      </main>
+      <main className="md:pl-20 pt-16 h-full">{children}</main>
     </div>
-   );
+  );
 }
- 
+
 export default RootLayout;

@@ -41,13 +41,14 @@ export class MemoryManager {
     const vectorStore = await PineconeStore.fromExistingIndex(
       new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
       { pineconeIndex }
-    ); 
+    );
 
     const similarDocs = await vectorStore
       .similaritySearch(recentChatHistory, 3, { fileName: companionFileName })
       .catch((err) => {
-        console.log("WARNING: failed to get vector search results.", err);
+        console.log("Failed to get vector search results", err);
       });
+
     return similarDocs;
   }
 
@@ -56,6 +57,7 @@ export class MemoryManager {
       MemoryManager.instance = new MemoryManager();
       await MemoryManager.instance.init();
     }
+
     return MemoryManager.instance;
   }
 
@@ -100,6 +102,7 @@ export class MemoryManager {
     companionKey: CompanionKey
   ) {
     const key = this.generateRedisCompanionKey(companionKey);
+
     if (await this.history.exists(key)) {
       console.log("User already has chat history");
       return;
@@ -107,10 +110,41 @@ export class MemoryManager {
 
     const content = seedContent.split(delimiter);
     let counter = 0;
+
     for (const line of content) {
       await this.history.zadd(key, { score: counter, member: line });
       counter += 1;
     }
   }
-}
 
+  public async deleteChatHistory(companionKey: CompanionKey) {
+    if (!companionKey || typeof companionKey.userId == "undefined") {
+      console.log("Companion key set incorrectly");
+      return "";
+    }
+
+    const key = this.generateRedisCompanionKey(companionKey);
+
+    await this.history.del(key);
+    console.log("Chat history deleted from redis");
+  }
+
+  public async deleteCompanionHistory(companion: string) {
+    if (!companion || typeof companion == "undefined") {
+      console.log("Companion not detected");
+      return "";
+    }
+
+    const keyList = await this.history.keys(companion + "*");
+
+    console.log(keyList);
+
+    await Promise.all(
+      keyList.map(async (key) => {
+        await this.history.del(key);
+      })
+    );
+
+    console.log("All keys are deleted");
+  }
+}

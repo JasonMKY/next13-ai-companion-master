@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+// import dotenv from "dotenv";
 import { StreamingTextResponse, LangChainStream } from "ai";
 import { auth, currentUser } from "@clerk/nextjs";
 import { Replicate } from "langchain/llms/replicate";
@@ -9,7 +9,14 @@ import { MemoryManager } from "@/lib/memory";
 import { rateLimit } from "@/lib/rate-limit";
 import prismadb from "@/lib/prismadb";
 
-dotenv.config({ path: `.env` });
+import {
+  increaseApiLimit,
+  checkApiLimit,
+  checkApiLimitPro,
+} from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
+
+// dotenv.config({ path: `.env` });
 
 export async function POST(
   request: Request,
@@ -30,9 +37,27 @@ export async function POST(
       return new NextResponse("Rate limit exceeded", { status: 429 });
     }
 
+    const freeTrial = await checkApiLimit();
+    const proTrial = await checkApiLimitPro();
+    const isPro = await checkSubscription();
+
+    if (!freeTrial && !isPro) {
+      return new NextResponse("Free trial has expired.", {
+        status: 403,
+        statusText: "Free",
+      });
+    }
+
+    if (!proTrial) {
+      return new NextResponse("Pro trial has expired.", {
+        status: 403,
+        statusText: "Pro",
+      });
+    }
+
     const companion = await prismadb.companion.update({
       where: {
-        id: params.chatId
+        id: params.chatId,
       },
       data: {
         messages: {
@@ -42,7 +67,7 @@ export async function POST(
             userId: user.id,
           },
         },
-      }
+      },
     });
 
     if (!companion) {
@@ -67,7 +92,9 @@ export async function POST(
 
     // Query Pinecone
 
-    const recentChatHistory = await memoryManager.readLatestHistory(companionKey);
+    const recentChatHistory = await memoryManager.readLatestHistory(
+      companionKey
+    );
 
     // Right now the preamble is included in the similarity search, but that
     // shouldn't be an issue
@@ -128,7 +155,7 @@ export async function POST(
 
       await prismadb.companion.update({
         where: {
-          id: params.chatId
+          id: params.chatId,
         },
         data: {
           messages: {
@@ -138,12 +165,51 @@ export async function POST(
               userId: user.id,
             },
           },
-        }
+        },
       });
     }
+
+    await increaseApiLimit();
 
     return new StreamingTextResponse(s);
   } catch (error) {
     return new NextResponse("Internal Error", { status: 500 });
   }
-};
+}
+
+export async function DELETE(
+  request: Request,
+  { params }: { params: { chatId: string } }
+) {
+  try {
+    const user = await currentUser();
+
+    if (!user || !user.firstName || !user.id) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const name = params.chatId;
+
+    const companionKey = {
+      companionName: name!,
+      userId: user.id,
+      modelName: "llama2-13b",
+    };
+    const memoryManager = await MemoryManager.getInstance();
+
+    // Delete messages for the current companion and user from redis
+    await memoryManager.deleteChatHistory(companionKey);
+
+    // Delete messages for the current companion and user from Prisma
+    await prismadb.message.deleteMany({
+      where: {
+        AND: [{ userId: user.id }, { companionId: params.chatId }],
+      },
+    });
+
+    return new NextResponse("Conversation reset", { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}

@@ -1,11 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { CldUploadButton } from "next-cloudinary";
-
-import { Button } from "@/components/ui/button";
-import { ImageIcon, X } from "lucide-react";
+import Image from "next/image";
 
 interface ImageUploadProps {
   value: string;
@@ -13,11 +10,7 @@ interface ImageUploadProps {
   disabled?: boolean;
 }
 
-export const ImageUpload = ({
-  value,
-  onChange,
-  disabled,
-}: ImageUploadProps) => {
+function ImageUpload({ value, onChange, disabled }: ImageUploadProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -25,29 +18,19 @@ export const ImageUpload = ({
   }, []);
 
   if (!isMounted) {
-    return false;
+    return null;
   }
 
   return (
     <div className="space-y-4 w-full flex flex-col justify-center items-center">
-      
-      <CldUploadButton options={{ maxFiles: 1 }} onUpload={(result: any) => onChange(result.info.secure_url)} uploadPreset="cyxxc2ht">
-        <div 
-          className="
-            p-4 
-            border-4 
-            border-dashed
-            border-primary/10 
-            rounded-lg 
-            hover:opacity-75 
-            transition 
-            flex 
-            flex-col 
-            space-y-2 
-            items-center 
-            justify-center
-          "
-        >
+      <CldUploadButton
+        onUpload={(result: any) => onChange(result.info.secure_url)}
+        options={{
+          maxFiles: 1,
+        }}
+        uploadPreset="qe9ikyne"
+      >
+        <div className="p-4 border-4 border-dashed border-primary/10 rounded-lg hover:opacity-75 transition flex flex-col space-y-2 items-center justify-center">
           <div className="relative h-40 w-40">
             <Image
               fill
@@ -60,4 +43,6 @@ export const ImageUpload = ({
       </CldUploadButton>
     </div>
   );
-};
+}
+
+export default ImageUpload;
