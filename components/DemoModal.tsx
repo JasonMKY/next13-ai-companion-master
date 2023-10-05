@@ -34,7 +34,7 @@ function DemoModal() {
         </DialogHeader>
         <Separator />
         <DialogTitle className="text-center text-base">
-          Upgrade to Pro Plan to continue!
+          Thanks for trying my app!
         </DialogTitle>
       </DialogContent>
     </Dialog>

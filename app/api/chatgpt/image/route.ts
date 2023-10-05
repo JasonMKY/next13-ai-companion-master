@@ -7,8 +7,8 @@ import axios from "axios";
 const openai = new OpenAI();
 
 cloudinary.config({
-  cloud_name: "djxmrrifp",
-  api_key: "119563296193642",
+  cloud_name: "dg1eo4yqs",
+  api_key: "655171173436411",
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 

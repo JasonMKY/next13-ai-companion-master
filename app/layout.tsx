@@ -13,8 +13,8 @@ import SignedInModal from "@/components/SignedInModal";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "RoleplayPal - Fantasy AI Chatbot",
-  description: "Create your own fantasty AI companion/chatbot",
+  title: "AI Companion",
+  description: "Chat with anyone - anytime, anywhere.",
 };
 
 export default function RootLayout({

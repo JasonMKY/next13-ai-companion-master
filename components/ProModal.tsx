@@ -53,7 +53,10 @@ function ProModal() {
         <DialogHeader className="space-y-4">
           <DialogTitle className="text-center">Upgrade to Pro</DialogTitle>
           <DialogDescription className="mx-auto space-y-2">
-              <div className="flex">
+            <div className="mb-4 text-center">
+              {"(Don't worry it's free for this demo)"}
+            </div>
+            <div className="flex">
               <CheckIcon size={20} className="mr-2 text-sky-500" />
               <div>
                 Create a{" "}
