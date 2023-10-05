@@ -39,9 +39,7 @@ function Sidebar({ isPro, companionId, userId }: SidebarProps) {
   ];
 
   const onNavigate = (url: string, pro: boolean, label: string) => {
-    if (!userId) {
-      return signedInModal.onOpen();
-    }
+    
     if (pro && !isPro) {
       return proModal.onOpen();
     }
