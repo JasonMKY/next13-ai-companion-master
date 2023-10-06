@@ -71,7 +71,7 @@ const PrivacyPolicy = () => {
   
   return (
     <div className="privacy-policy" style={style}>
-        <div style={{ marginTop: '1in' }}></div> 
+        <div style={{ marginTop: '0.6in' }}></div> 
       <ReactMarkdown>{markdownText}</ReactMarkdown>
     </div>
   );
