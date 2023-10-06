@@ -63,7 +63,7 @@ const PrivacyPolicy = () => {
   
   If you have any questions or concerns about this Privacy Policy or our privacy practices, please contact us at jmck38845@gmail.com.
   
-  By using RolePlayPals.fun, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.`;
+  By using RolePlayPals.fun, you acknowledge that you have read and understood this Privacy Policy and agree to its [-Terms Of Service-.](http://www.roleplaypals.fun/termsofservice).`;
 
   const style = {
     marginLeft: '0.3in', // Set the left margin to 3 inches
