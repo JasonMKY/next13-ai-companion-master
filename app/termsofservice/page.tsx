@@ -47,7 +47,7 @@ const TermsOfService = () => {
   
   ## 5. Privacy Policy
   
-  By using the Website, you agree to our -[Privacy Policy]-(http://www.roleplaypals.fun/privacypolicy), which outlines how we collect, use, and disclose your personal information.
+  By using the Website, you agree to our [-Privacy Policy-](http://www.roleplaypals.fun/privacypolicy), which outlines how we collect, use, and disclose your personal information.
   
   ## 6. Termination
   
