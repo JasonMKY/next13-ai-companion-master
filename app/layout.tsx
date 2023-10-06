@@ -32,6 +32,12 @@ export default function RootLayout({
             <SignedInModal />
             {children}
             <Toaster />
+            <footer>
+              <p>
+                <a href="http://www.roleplaypals.fun/privacypolicy">Privacy Policy</a> |{" "}
+                <a href="http://www.roleplaypals.fun/termsofservice">Terms of Service</a>
+              </p>
+            </footer>
           </ThemeProvider>
         </body>
       </html>
