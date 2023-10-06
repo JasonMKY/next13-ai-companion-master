@@ -70,7 +70,7 @@ const PrivacyPolicy = () => {
   };
   
   return (
-    <div className="privacy-policy">
+    <div className="privacy-policy" style={style}>
       <ReactMarkdown>{markdownText}</ReactMarkdown>
     </div>
   );
