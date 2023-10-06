@@ -4,7 +4,9 @@ import ReactMarkdown from 'react-markdown';
 const PrivacyPolicy = () => {
   const markdownText = 
   `# Privacy Policy
+
   <br>
+  
   **Last Updated:** October 8, 2023
   
   Welcome to RolePlayPals.fun (the "Website"). At RolePlayPals.fun, we take your privacy seriously and are committed to safeguarding your personal information. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your personal information when you visit our Website or use our services.
