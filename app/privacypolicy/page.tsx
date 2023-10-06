@@ -5,8 +5,6 @@ const PrivacyPolicy = () => {
   const markdownText = 
   `# Privacy Policy
 
-  <br>
-  
   **Last Updated:** October 8, 2023
   
   Welcome to RolePlayPals.fun (the "Website"). At RolePlayPals.fun, we take your privacy seriously and are committed to safeguarding your personal information. This Privacy Policy is designed to help you understand how we collect, use, disclose, and safeguard your personal information when you visit our Website or use our services.
@@ -68,7 +66,7 @@ const PrivacyPolicy = () => {
   By using RolePlayPals.fun, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.`;
 
   const style = {
-    marginLeft: '0.6in', // Set the left margin to 3 inches
+    marginLeft: '0.3in', // Set the left margin to 3 inches
   };
   
   return (
