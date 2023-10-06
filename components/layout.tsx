@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 import ProModal from "@/components/ProModal";
 import DemoModal from "@/components/DemoModal";
 import SignedInModal from "@/components/SignedInModal";
+import Footer from "./footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,12 +33,7 @@ export default function RootLayout({
             <SignedInModal />
             {children}
             <Toaster />
-            <footer>
-              <p>
-                <a href="http://www.roleplaypals.fun/privacypolicy">Privacy Policy</a> |{" "}
-                <a href="http://www.roleplaypals.fun/termsofservice">Terms of Service</a>
-              </p>
-            </footer>
+            <Footer />
           </ThemeProvider>
         </body>
       </html>
