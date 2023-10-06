@@ -19,7 +19,7 @@ const TermsOfService = () => {
   
   ### 3.1. Eligibility
   
-  You must be at least [age] years old to use the Website.
+  You must be at least 13 years old to use the Website.
   
   ### 3.2. User Accounts
   
