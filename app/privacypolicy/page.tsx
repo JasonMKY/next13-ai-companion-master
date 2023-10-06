@@ -66,7 +66,7 @@ const PrivacyPolicy = () => {
   By using RolePlayPals.fun, you acknowledge that you have read and understood this Privacy Policy and agree to its terms.`;
 
   const style = {
-    marginLeft: '50in', // Set the left margin to 3 inches
+    marginLeft: '3in', // Set the left margin to 3 inches
   };
   
   return (
