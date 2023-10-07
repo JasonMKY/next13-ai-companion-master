@@ -6,7 +6,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="fixed bottom-0 w-full bg-background text-foreground">
+    <footer className="fixed bottom-0 w-full bg-background text-foreground" style={style}>
       <div className="container mx-auto py-10">
         <ul className="flex justify-center space-x-6">
           <li>
