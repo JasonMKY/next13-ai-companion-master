@@ -3,7 +3,7 @@
 import { useProModal } from "@/hooks/use-pro-modal";
 import { useSignedInModal } from "@/hooks/use-signed-in-modal";
 import { cn } from "@/lib/utils";
-import { Home, Plus, Settings } from "lucide-react";
+import { Home, Plus, Settings, Lock, FileText } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 
 interface SidebarProps {
@@ -34,6 +34,20 @@ function Sidebar({ isPro, companionId, userId }: SidebarProps) {
       icon: Settings,
       href: "/settings",
       label: "Settings",
+      pro: false,
+    },
+
+    {
+      icon: FileText, // You can use an appropriate icon
+      href: "/privacypolicy",
+      label: "Privacy Policy",
+      pro: false,
+    },
+    // Add Terms of Service link
+    {
+      icon: Lock, // You can use an appropriate icon
+      href: "/termsofservice",
+      label: "Terms of Service",
       pro: false,
     },
   ];

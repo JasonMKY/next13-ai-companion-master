@@ -34,14 +34,14 @@ function SignedInModal() {
         <DialogHeader className="space-y-4">
           <DialogTitle className="text-center">Create an account</DialogTitle>
           <DialogDescription className="mx-auto space-y-2">
-            {/* <div className="mb-4 text-center">to continue to companion.ai</div> */}
+            {/* <div className="mb-4 text-center">to continue to roleplaypals.fun</div> */}
             <div className="flex">
               <CheckIcon size={20} className="mr-2 text-sky-500" />
-              <div>Chat with AI Companions</div>
+              <div>Chat with AI Chatbot/Companions</div>
             </div>
             <div className="flex">
               <CheckIcon size={20} className="mr-2 text-sky-500" />
-              <div>Create a Custom AI Companion</div>
+              <div>Create a Custom AI Chatbot/Companion</div>
             </div>
           </DialogDescription>
         </DialogHeader>

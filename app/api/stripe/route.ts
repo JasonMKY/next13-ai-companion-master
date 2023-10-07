@@ -43,8 +43,8 @@ export async function GET() {
           price_data: {
             currency: "USD",
             product_data: {
-              name: "Companion Pro",
-              description: "Test Card Details: 4242 4242 4242 4242, 5/55, 555",
+              name: "RoleplayPals Pro",
+              description: "4242 4242 4242 4242, 5/55, 555",
             },
             unit_amount: 999,
             recurring: {

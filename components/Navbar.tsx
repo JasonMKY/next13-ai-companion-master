@@ -43,7 +43,7 @@ function Navbar({ isPro, companionId, userId }: NavbarProps) {
               font.className
             )}
           >
-            companion.ai
+            roleplaypals.fun
           </h1>
         </Link>
       </div>

@@ -13,8 +13,8 @@ import SignedInModal from "@/components/SignedInModal";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Companion",
-  description: "Chat with anyone - anytime, anywhere.",
+  title: "RoleplayPals - Create your own Fatansy AI Chatbot",
+  description: "Create your own Fatansy AI Chatbot",
 };
 
 export default function RootLayout({
