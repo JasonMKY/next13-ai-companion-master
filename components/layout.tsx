@@ -9,7 +9,7 @@ import { Toaster } from "@/components/ui/toaster";
 import ProModal from "@/components/ProModal";
 import DemoModal from "@/components/DemoModal";
 import SignedInModal from "@/components/SignedInModal";
-import Footer from "./footer";
+import Footer from "./.footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
