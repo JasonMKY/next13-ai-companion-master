@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 const TermsOfService = () => {
   const markdownContent = `# Terms of Service for Roleplaypals.fun
 
-  **Last updated:** [Date]
+  **Last updated:** October 7, 2023
   
   Please read these Terms of Service ("Terms") carefully before using Roleplaypals.fun (the "Website") operated by [Your Company Name] ("us," "we," or "our").
   
