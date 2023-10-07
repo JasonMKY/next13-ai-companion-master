@@ -11,7 +11,7 @@ const Footer = () => {
         <ul className="flex justify-center space-x-6">
           <li>
             <a href="/privacy-policy" className="text-gray-600 hover:text-gray-900">
-              Privacy Policy
+              Privay Policy
             </a>
           </li>
           <li>
