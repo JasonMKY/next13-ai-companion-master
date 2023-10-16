@@ -46,7 +46,7 @@ export async function GET() {
               name: "RoleplayPals Pro",
               description: "4242 4242 4242 4242, 5/55, 555",
             },
-            unit_amount: 899,
+            unit_amount: 499,
             recurring: {
               interval: "month",
             },
