@@ -9,6 +9,7 @@ async function SettingsPage() {
       <h3 className="text-lg font-medium">Settings</h3>
       <div className="text-muted-foreground text-sm">
         {`You are currently on a ${isPro ? "Pro" : "free"} plan.`}
+        {'If you need support email: jmck38845@gmail.com'}
       </div>
       <SubscriptionButton isPro={isPro} />
     </div>
